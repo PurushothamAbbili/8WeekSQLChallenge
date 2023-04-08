@@ -1,6 +1,6 @@
--- -- CASE STUDY #1: DANNY'S DINER --
+-- CASE STUDY #1: DANNY'S DINER --
 
--- DROP DATABASE IF EXISTS dannys_diner;
+DROP DATABASE IF EXISTS dannys_diner;
 CREATE DATABASE dannys_diner;
 USE dannys_diner;
 
@@ -65,6 +65,7 @@ FROM
     menu ON sales.product_id = menu.product_id
 GROUP BY customer_id;
 
+
 -- 2. How many days has each customer visited the restaurant?
 SELECT 
     customer_id,
@@ -72,6 +73,7 @@ SELECT
 FROM
     sales
 GROUP BY customer_id;
+
 
 -- 3. What was the first item from the menu purchased by each customer?
 WITH CTE AS(
@@ -91,6 +93,7 @@ WHERE
     rnk = 1
 GROUP BY customer_id , product_name , order_date;
 
+
 -- 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 SELECT 
     m.product_name, COUNT(s.product_id) AS no_of_times_purchased
@@ -101,6 +104,7 @@ FROM
 GROUP BY product_name
 ORDER BY no_of_times_purchased DESC
 LIMIT 1;
+
 
 -- 5. Which item was the most popular for each customer?
 WITH fav_item AS(
@@ -118,7 +122,8 @@ FROM
     fav_item
 WHERE
     rnk = 1;
-    
+ 
+ 
 -- 6. Which item was purchased first by the customer after they became a member?
 WITH member_sales AS 
 (
@@ -139,7 +144,8 @@ FROM
     menu m2 ON s.product_id = m2.product_id
 WHERE
     rnk = 1;
-    
+
+
 -- 7. Which item was purchased just before the customer became a member?
 WITH member_sales AS 
 (
@@ -160,7 +166,8 @@ FROM
     menu m2 ON s.product_id = m2.product_id
 WHERE
     rnk = 1;
-    
+
+
 -- 8. What is the total items and amount spent for each member before they became a member?
 SELECT 
     s.customer_id,
@@ -175,6 +182,7 @@ FROM
 WHERE
     s.order_date < mem.join_date
 GROUP BY s.customer_id;
+
 
 -- 9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier — how many points would each customer have?
 WITH price_points AS (
@@ -194,8 +202,8 @@ FROM
     sales s ON p.product_id = s.product_id
 GROUP BY s.customer_id;
 
--- 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi 
--- how many points do customer A and B have at the end of January?
+
+-- 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi. How many points do customer A and B have at the end of January?
 WITH dates AS (
    SELECT *, 
       DATE_ADD(join_date, INTERVAL +6 DAY ) AS valid_date, 
@@ -238,6 +246,7 @@ FROM
     menu m ON s.product_id = m.product_id
         LEFT JOIN
     members mem ON s.customer_id = mem.customer_id;
+
 
 /* 2. Rank All The Things - Danny also requires further information about the ranking of customer products, 
    but he purposely does not need the ranking for non-member purchases.

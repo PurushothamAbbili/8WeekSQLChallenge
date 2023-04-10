@@ -1,6 +1,6 @@
 # 🛒 Case Study #5 - Data Mart
-<p align="center">
-<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/5.png" align="center" width="400" height="400" >
+
+<img src="https://user-images.githubusercontent.com/81607668/130343294-a8dcceb7-b6c3-4006-8ad2-fab2f6905258.png" alt="Image" width="500" height="520">
 
 ## 📕 Table of Contents
 * [Bussiness Task](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%235%20-%20Data%20Mart#%EF%B8%8F-bussiness-task)

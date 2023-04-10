@@ -1,6 +1,6 @@
 # 🐟 Case Study #6 - Clique Bait
-<p align="center">
-<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/6.png" align="center" width="400" height="400" >
+
+<img src="https://user-images.githubusercontent.com/81607668/134615258-d1108e0d-0816-4cd7-a972-d45580f82352.png" alt="Image" width="500" height="520">
 
 ## 📕 Table of Contents
 * [Bussiness Task](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%236%20-%20Clique%20Bait#%EF%B8%8F-bussiness-task)

@@ -30,3 +30,8 @@ Danny wants to use the data to answer a few simple questions about his customers
 12. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
 
 ***
+
+## Bonus Questions
+
+1. Join All The Things - Recreate the table with: customer_id, order_date, product_name, price, member (Y/N)
+2. Rank All The Things - Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.

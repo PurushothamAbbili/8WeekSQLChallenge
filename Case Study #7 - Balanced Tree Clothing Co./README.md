@@ -1,7 +1,6 @@
 # 👕 Case Study #7 - Balanced Tree Clothing Co.
 
-<p align="center">
-<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/7.png" align="center" width="400" height="400" >
+<img src="https://8weeksqlchallenge.com/images/case-study-designs/7.png" width="400" height="400" >
 
 ## 📕 Table of Contents
 * [Bussiness Task](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co.#%EF%B8%8F-bussiness-task)

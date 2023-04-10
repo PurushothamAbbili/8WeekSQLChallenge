@@ -1,7 +1,6 @@
 # 🍊 Case Study #8 - Fresh Segments
 
-<p align="center">
-<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/8.png" align="center" width="400" height="400" >
+<img src="https://user-images.githubusercontent.com/81607668/138843936-d1741a39-9b87-4d5d-b09c-643600e28c92.png" alt="Image" width="500" height="520">
 
 ## 📕 Table of Contents
 * [Bussiness Task](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%238%20-%20Fresh%20Segments#%EF%B8%8F-bussiness-task)

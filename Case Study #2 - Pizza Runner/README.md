@@ -1,7 +1,6 @@
 # 🍕 Case Study #2 - Pizza Runner
-<p align="center">
-<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/2.png" align="center" width="400" height="400" >
-  
+<img src="https://user-images.githubusercontent.com/81607668/127271856-3c0d5b4a-baab-472c-9e24-3c1e3c3359b2.png" alt="Image" width="500" height="520">
+
 ## 📕 Table of Contents
 * [Bussiness Task](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/README.md#%EF%B8%8F-bussiness-task)
 * [Entity Relationship Diagram](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/README.md#-entity-relationship-diagram)

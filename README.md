@@ -4,169 +4,111 @@ This repository contains the solution for the 8 case studies in **[#8WeekSQLChal
 
 Thanks @DataWithDanny for the excellent SQL case studies! 👋🏻 
 
-## 📚 Table of Contents
-- [Case Study #1: Danny's Diner](#case-study-1-dannys-diner)
-- [Case Study #2: Pizza Runner](#case-study-2-pizza-runner)
-- [Case Study #3: Foodie-Fi](#case-study-3-foodie-fi)
-- [Case Study #4: Data Bank](#case-study-4-data-bank)
-- [Case Study #5: Data Mart](#case-study-5-data-mart)
-- [Case Study #6: Clique Bait](#case-study-6-clique-bait)
-- [Case Study #8: Fresh Segments](#case-study-8-fresh-segments)
+## 📕 Table of Contents
+* [Case Study #1 - Danny's Diner](https://github.com/qanhnn12/8-Week-SQL-Challenge#-case-study-1---dannys-diner)
+* [Case Study #2 - Pizza Runner](https://github.com/qanhnn12/8-Week-SQL-Challenge#-case-study-2---pizza-runner)
+* [Case Study #3 - Foodie-Fi](https://github.com/qanhnn12/8-Week-SQL-Challenge#-case-study-3---foodie-fi)
+* [Case Study #4 - Data Bank](https://github.com/qanhnn12/8-Week-SQL-Challenge#bar_chart-case-study-4---data-bank)
+* [Case Study #5 - Data Mart](https://github.com/qanhnn12/8-Week-SQL-Challenge#-case-study-5---data-mart)
+* [Case Study #6 - Clique Bait](https://github.com/qanhnn12/8-Week-SQL-Challenge#-case-study-6---clique-bait)
+* [Case Study #7 - Balanced Tree Clothing Co.](https://github.com/qanhnn12/8-Week-SQL-Challenge#tshirt-case-study-7---balanced-tree-clothing-co)
+* [Case Study #8 - Fresh Segments](https://github.com/qanhnn12/8-Week-SQL-Challenge#-case-study-8---fresh-segments)
 
-***
+---
+## 🍜 Case Study #1 - Danny's Diner
+<p align="center">
+<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/1.png" align="center" width="400" height="400" >
 
-## Case Study #1: Danny's Diner 
-<img src="https://user-images.githubusercontent.com/81607668/127727503-9d9e7a25-93cb-4f95-8bd0-20b87cb4b459.png" alt="Image" width="500" height="520">
+Danny seriously loves Japanese food so in the beginning of 2021, he decides to embark upon a risky venture and opens up a cute little restaurant that sells his 3 favourite foods: sushi, curry and ramen.
 
-View the case study [here](https://8weeksqlchallenge.com/case-study-1/) and my **solution** [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner).
+Danny’s Diner is in need of your assistance to help the restaurant stay afloat - the restaurant has captured some very basic data from their few months of operation but have no idea how to use their data to help them run the business.
 
-### Business Task
-Danny wants to use the data to answer a few simple questions about his customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite. 
+***View the case study [here](https://8weeksqlchallenge.com/case-study-1/) and my solution 
+  [here](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner).***
 
-### Entity Relationship Diagram
+---
+## 🍕 Case Study #2 - Pizza Runner
+<p align="center">
+<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/2.png" align="center" width="400" height="400" >
 
-![image](https://user-images.githubusercontent.com/81607668/127271130-dca9aedd-4ca9-4ed8-b6ec-1e1920dca4a8.png)
+Danny was scrolling through his Instagram feed when something really caught his eye - “80s Retro Styling and Pizza Is The Future!”
 
-### Insights and Findings
+Danny was sold on the idea, but he knew that pizza alone was not going to help him get seed funding to expand his new Pizza Empire - so he had one more genius idea to combine with it - he was going to Uberize it - and so Pizza Runner was launched!
 
-***
+Danny started by recruiting “runners” to deliver fresh pizza from Pizza Runner Headquarters (otherwise known as Danny’s house) and also maxed out his credit card to pay freelance developers to build a mobile app to accept orders from customers.
 
-## Case Study #2: Pizza Runner
+***View the case study [here](https://8weeksqlchallenge.com/case-study-2/) and my solution [here](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%232%20-%20Pizza%20Runner).***
 
-<img src="https://user-images.githubusercontent.com/81607668/127271856-3c0d5b4a-baab-472c-9e24-3c1e3c3359b2.png" alt="Image" width="500" height="520">
+---
+## 🥑 Case Study #3 - Foodie-Fi
+<p align="center">
+<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/3.png" align="center" width="400" height="400" >
 
-View the case study [here](https://8weeksqlchallenge.com/case-study-2/) and my **solution** [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/tree/main/Case%20Study%20%232%20-%20Pizza%20Runner).
+Danny was scrolling through his Instagram feed when something really caught his eye - “80s Retro Styling and Pizza Is The Future!”
 
-### Business Task
-Danny is expanding his new Pizza Empire and at the same time, he wants to Uberize it, so Pizza Runner was launched!
+Danny was sold on the idea, but he knew that pizza alone was not going to help him get seed funding to expand his new Pizza Empire - so he had one more genius idea to combine with it - he was going to Uberize it - and so Pizza Runner was launched!
 
-Danny started by recruiting “runners” to deliver fresh pizza from Pizza Runner Headquarters (otherwise known as Danny’s house) and also maxed out his credit card to pay freelance developers to build a mobile app to accept orders from customers. 
+Danny started by recruiting “runners” to deliver fresh pizza from Pizza Runner Headquarters (otherwise known as Danny’s house) and also maxed out his credit card to pay freelance developers to build a mobile app to accept orders from customers.
 
-### Entity Relationship Diagram
-
-![image](https://user-images.githubusercontent.com/81607668/127271531-0b4da8c7-8b24-4a14-9093-0795c4fa037e.png)
-
-### Insights and Findings
+***View the case study [here](https://8weeksqlchallenge.com/case-study-3/) and my solution [here](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi).***
   
-***
+---
+## :bar_chart: Case Study #4 - Data Bank
+<p align="center">
+<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/4.png" align="center" width="400" height="400" >
 
-## Case Study #3: Foodie-Fi
+There is a new innovation in the financial industry called Neo-Banks: new aged digital only banks without physical branches.
 
-<img src="https://user-images.githubusercontent.com/81607668/129742132-8e13c136-adf2-49c4-9866-dec6be0d30f0.png" width="500" height="520" alt="image">
-
-View the case study [here](https://8weeksqlchallenge.com/case-study-3/) and my **solution** [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi).
-
-### Business Task
-Danny and his friends launched a new startup Foodie-Fi and started selling monthly and annual subscriptions, giving their customers unlimited on-demand access to exclusive food videos from around the world.
-
-This case study focuses on using subscription style digital data to answer important business questions on customer journey, payments, and business performances.
-
-### Entity Relationship Diagram
-
-![image](https://user-images.githubusercontent.com/81607668/129744449-37b3229b-80b2-4cce-b8e0-707d7f48dcec.png)
-
-### Insights and Findings
-
-***
-
-## Case Study #4: Data Bank
-
-<img src="https://user-images.githubusercontent.com/81607668/130343294-a8dcceb7-b6c3-4006-8ad2-fab2f6905258.png" alt="Image" width="500" height="520">
-
-View the case study [here](https://8weeksqlchallenge.com/case-study-4/) and my **solution** [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank).
-
-### Business Task
-Danny launched a new initiative, Data Bank which runs just like any other digital bank - but it isn’t only for banking activities, they also have the world’s most secure distributed data storage platform!
-
-Customers are allocated cloud data storage limits which are directly linked to how much money they have in their accounts. There are a few interesting caveats that go with this business model, and this is where the Data Bank team need your help!
+Danny thought that there should be some sort of intersection between these new age banks, cryptocurrency and the data world…so he decides to launch a new initiative - Data Bank!
 
 The management team at Data Bank want to increase their total customer base - but also need some help tracking just how much data storage their customers will need.
 
 This case study is all about calculating metrics, growth and helping the business analyse their data in a smart way to better forecast and plan for their future developments!
 
-### Entity Relationship Diagram
+***View the case study [here](https://8weeksqlchallenge.com/case-study-4/) and my solution [here](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank).***
+  
+---
+## 🛒 Case Study #5 - Data Mart
+<p align="center">
+<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/5.png" align="center" width="400" height="400" >
 
-<img width="631" alt="image" src="https://user-images.githubusercontent.com/81607668/130343339-8c9ff915-c88c-4942-9175-9999da78542c.png">
+Data Mart is Danny’s latest venture and after running international operations for his online supermarket that specialises in fresh produce - Danny is asking for your support to analyse his sales performance.
 
-### Insights and Findings
+In June 2020 - large scale supply changes were made at Data Mart. All Data Mart products now use sustainable packaging methods in every single step from the farm all the way to the customer. Danny needs your help to quantify the impact of this change on the sales performance for Data Mart and it’s separate business areas.
 
-***
+***View the case study [here](https://8weeksqlchallenge.com/case-study-5/) and my solution [here](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%235%20-%20Data%20Mart).***
+  
+---
+## 🐟 Case Study #6 - Clique Bait
+<p align="center">
+<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/6.png" align="center" width="400" height="400" >
 
-## Case Study #5: Data Mart
+Clique Bait is not like your regular online seafood store - the founder and CEO Danny, was also a part of a digital data analytics team and wanted to expand his knowledge into the seafood industry!
 
-<img src="https://user-images.githubusercontent.com/81607668/131437982-fc087a4c-0b77-4714-907b-54e0420e7166.png" alt="Image" width="500" height="520">
+In this case study - you are required to support Danny’s vision and analyse his dataset and come up with creative solutions to calculate funnel fallout rates for the Clique Bait online store.
 
-View the case study [here](https://8weeksqlchallenge.com/case-study-5/) and my **solution** [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/tree/main/Case%20Study%20%235%20-%20Data%20Mart).
+***View the case study [here](https://8weeksqlchallenge.com/case-study-6/) and my solution [here](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%236%20-%20Clique%20Bait).***
+  
+---
+## :tshirt: Case Study #7 - Balanced Tree Clothing Co.
+<p align="center">
+<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/7.png" align="center" width="400" height="400" >
 
-### Business Task
-Data Mart is an online supermarket that specialises in fresh produce.
+Balanced Tree Clothing Company prides themselves on providing an optimised range of clothing and lifestyle wear for the modern adventurer!
 
-In June 2020, large scale supply changes were made at Data Mart. All Data Mart products now use sustainable packaging methods in every single step from the farm all the way to the customer.
+Danny, the CEO of this trendy fashion company has asked you to assist the team’s merchandising teams analyse their sales performance and generate a basic financial report to share with the wider business.
 
-Danny needs your help to analyse and quantify the impact of this change on the sales performance for Data Mart and it’s separate business areas.
+***View the case study [here](https://8weeksqlchallenge.com/case-study-7/) and my solution [here](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co.).***
 
-The key business question to answer are the following:
-- What was the quantifiable impact of the changes introduced in June 2020?
-- Which platform, region, segment and customer types were the most impacted by this change?
-- What can we do about future introduction of similar sustainability updates to the business to minimise impact on sales?
+---
+## 🍊 Case Study #8 - Fresh Segments
+<p align="center">
+<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/8.png" align="center" width="400" height="400" >
 
-### Entity Relationship Diagram
-
-<img width="287" alt="image" src="https://user-images.githubusercontent.com/81607668/131438278-45e6a4e8-7cf5-468a-937b-2c306a792782.png">
-
-<img width="649" alt="image" src="https://user-images.githubusercontent.com/81607668/131438417-1e21efa3-9924-490f-9bff-3c28cce41a37.png">
-
-Here are some further details about the dataset:
-
-1. Data Mart has international operations using a multi-`region` strategy.
-2. Data Mart has both, a retail and online `platform` in the form of a Shopify store front to serve their customers.
-3. Customer `segment` and `customer_type` data relates to personal age and demographics information that is shared with Data Mart.
-4. `transactions` is the count of unique purchases made through Data Mart and `sales` is the actual dollar amount of purchases.
-
-Each record in the dataset is related to a specific aggregated slice of the underlying sales data rolled up into a week_date value which represents the start of the sales week.
-
-### Insights and Findings
-
-***
-
-## Case Study #6: Clique Bait
-
-<img src="https://user-images.githubusercontent.com/81607668/134615258-d1108e0d-0816-4cd7-a972-d45580f82352.png" alt="Image" width="500" height="520">
-
-View the case study [here](https://8weeksqlchallenge.com/case-study-6/) and my **solution** [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/tree/main/Case%20Study%20%236%20-%20Clique%20Bait).
-
-### Business Task
-
-Clique Bait is an online seafood store. In this case study - you are required to support the founder and CEO Danny’s vision and analyse his dataset and come up with creative solutions to calculate funnel fallout rates for the Clique Bait online store.
-
-### Entity Relationship Diagram
-
-<img width="825" alt="image" src="https://user-images.githubusercontent.com/81607668/134619326-f560a7b0-23b2-42ba-964b-95b3c8d55c76.png">
-
-### Insights and Findings
-
-***
-
-## Case Study #8: Fresh Segments
-
-<img src="https://user-images.githubusercontent.com/81607668/138843936-d1741a39-9b87-4d5d-b09c-643600e28c92.png" alt="Image" width="500" height="520">
-
-View the case study [here](https://8weeksqlchallenge.com/case-study-8/) and my **solution** [here].
-
-### Business Task
-
-Fresh Segments is a digital marketing agency that helps other businesses analyse trends in online ad click behaviour for their unique customer base.
-
-Clients share their customer lists with the Fresh Segments team who then aggregate interest metrics and generate a single dataset worth of metrics for further analysis.
-
-In particular - the composition and rankings for different interests are provided for each client showing the proportion of their customer list who interacted with online assets related to each interest for each month.
+Danny created Fresh Segments, a digital marketing agency that helps other businesses analyse trends in online ad click behaviour for their unique customer base.
+  
+Clients share their customer lists with the Fresh Segments team who then aggregate interest metrics and generate a single dataset worth of metrics for further analysis. In particular - the composition and rankings for different interests are provided for each client showing the proportion of their customer list who interacted with online assets related to each interest for each month.
 
 Danny has asked for your assistance to analyse aggregated metrics for an example client and provide some high level insights about the customer list and their interests.
 
-### Entity Relationship Diagram
-
-
-
-### Insights and Findings
-
-***
+***View the case study [here](https://8weeksqlchallenge.com/case-study-8/) and my solution [here](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%238%20-%20Fresh%20Segments).***

@@ -1,12 +1,13 @@
 CREATE DATABASE pizza_runner;
+USE pizza_runner;
 
-DROP TABLE IF EXISTS pizza_runner.dbo.runners;
-CREATE TABLE pizza_runner.dbo.runners (
-  "runner_id" INTEGER,
-  "registration_date" DATE
+CREATE TABLE IF NOT EXISTS runners (
+  runner_id INT,
+  registration_date DATE
 );
-INSERT INTO pizza_runner.dbo.runners
-  ("runner_id", "registration_date")
+
+INSERT INTO runners
+  (runner_id, registration_date)
 VALUES
   (1, '2021-01-01'),
   (2, '2021-01-03'),
@@ -14,18 +15,18 @@ VALUES
   (4, '2021-01-15');
 
 
-DROP TABLE IF EXISTS pizza_runner.dbo.customer_orders;
-CREATE TABLE pizza_runner.dbo.customer_orders (
-  "order_id" INTEGER,
-  "customer_id" INTEGER,
-  "pizza_id" INTEGER,
-  "exclusions" VARCHAR(4),
-  "extras" VARCHAR(4),
-  "order_time" DATETIME     
+DROP TABLE IF EXISTS customer_orders;
+CREATE TABLE customer_orders (
+  order_id INT,
+  customer_id INT,
+  pizza_id INT,
+  exclusions VARCHAR(4),
+  extras VARCHAR(4),
+  order_time DATETIME     
 );
 
-INSERT INTO pizza_runner.dbo.customer_orders
-  ("order_id", "customer_id", "pizza_id", "exclusions", "extras", "order_time")
+INSERT INTO customer_orders
+  (order_id, customer_id, pizza_id, exclusions, extras, order_time)
 VALUES
   ('1', '101', '1', '', '', '2020-01-01 18:05:02'),
   ('2', '101', '1', '', '', '2020-01-01 19:00:52'),
@@ -43,18 +44,18 @@ VALUES
   ('10', '104', '1', '2, 6', '1, 4', '2020-01-11 18:34:49');
 
 
-DROP TABLE IF EXISTS pizza_runner.dbo.runner_orders;
-CREATE TABLE pizza_runner.dbo.runner_orders (
-  "order_id" INTEGER,
-  "runner_id" INTEGER,
-  "pickup_time" VARCHAR(19),
-  "distance" VARCHAR(7),
-  "duration" VARCHAR(10),
-  "cancellation" VARCHAR(23)
+DROP TABLE IF EXISTS runner_orders;
+CREATE TABLE runner_orders (
+  order_id INT,
+  runner_id INT,
+  pickup_time VARCHAR(19),
+  distance VARCHAR(7),
+  duration VARCHAR(10),
+  cancellation VARCHAR(23)
 );
 
-INSERT INTO pizza_runner.dbo.runner_orders
-  ("order_id", "runner_id", "pickup_time", "distance", "duration", "cancellation")
+INSERT INTO runner_orders
+  (order_id, runner_id, pickup_time, distance, duration, cancellation)
 VALUES
   ('1', '1', '2020-01-01 18:15:34', '20km', '32 minutes', ''),
   ('2', '1', '2020-01-01 19:10:54', '20km', '27 minutes', ''),
@@ -68,37 +69,37 @@ VALUES
   ('10', '1', '2020-01-11 18:50:20', '10km', '10minutes', 'null');
 
 
-DROP TABLE IF EXISTS pizza_runner.dbo.pizza_names;
-CREATE TABLE pizza_runner.dbo.pizza_names (
-  "pizza_id" INTEGER,
-  "pizza_name" VARCHAR(10)
+DROP TABLE IF EXISTS pizza_names;
+CREATE TABLE pizza_names (
+  pizza_id INT,
+  pizza_name VARCHAR(10)
 );
-INSERT INTO pizza_runner.dbo.pizza_names
-  ("pizza_id", "pizza_name")
+INSERT INTO pizza_names
+  (pizza_id, pizza_name)
 VALUES
   (1, 'Meatlovers'),
   (2, 'Vegetarian');
 
 
-DROP TABLE IF EXISTS pizza_runner.dbo.pizza_recipes;
-CREATE TABLE pizza_runner.dbo.pizza_recipes (
-  "pizza_id" INTEGER,
-  "toppings" VARCHAR(30)
+DROP TABLE IF EXISTS pizza_recipes;
+CREATE TABLE pizza_recipes (
+  pizza_id INT,
+  toppings VARCHAR(30)
 );
-INSERT INTO pizza_runner.dbo.pizza_recipes
-  ("pizza_id", "toppings")
+INSERT INTO pizza_recipes
+  (pizza_id, toppings)
 VALUES
   (1, '1, 2, 3, 4, 5, 6, 8, 10'),
   (2, '4, 6, 7, 9, 11, 12');
 
 
-DROP TABLE IF EXISTS pizza_runner.dbo.pizza_toppings;
-CREATE TABLE pizza_runner.dbo.pizza_toppings (
-  "topping_id" INTEGER,
-  "topping_name" VARCHAR(20)
+DROP TABLE IF EXISTS pizza_toppings;
+CREATE TABLE pizza_toppings (
+  topping_id INT,
+  topping_name VARCHAR(20)
 );
-INSERT INTO pizza_runner.dbo.pizza_toppings
-  ("topping_id", "topping_name")
+INSERT INTO pizza_toppings
+  (topping_id, topping_name)
 VALUES
   (1, 'Bacon'),
   (2, 'BBQ Sauce'),

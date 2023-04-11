@@ -5,7 +5,7 @@ This repository contains the solution for the 8 case studies in **[#8WeekSQLChal
 Thanks @DataWithDanny for the excellent SQL case studies! 👋🏻 
 
 ## 📕 Table of Contents
-* [Case Study #1 - Danny's Diner]()
+* [Case Study #1 - Danny's Diner](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner)
 * [Case Study #2 - Pizza Runner]
 * [Case Study #3 - Foodie-Fi]
 * [Case Study #4 - Data Bank]

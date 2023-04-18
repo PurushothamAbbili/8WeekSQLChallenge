@@ -18,7 +18,7 @@ SELECT
     END AS exclusions,
     CASE
         WHEN 
-			extras IS NULL OR extras LIKE 'null' 
+	    extras IS NULL OR extras LIKE 'null' 
         THEN
 			''
         ELSE extras

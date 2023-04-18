@@ -38,7 +38,6 @@ WHERE
     r.cancellation IS NULL
 GROUP BY p.pizza_name;
 
-
 -- Menthod II (Using Subquery)
 SELECT 
     p.pizza_name, COUNT(*) AS delivery_count
@@ -71,7 +70,6 @@ SELECT
 FROM
     customer_orders_temp
 GROUP BY customer_id;
-
 
 -- Method II
 SELECT 

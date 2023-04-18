@@ -20,7 +20,7 @@ SELECT
         WHEN 
 	    extras IS NULL OR extras LIKE 'null' 
         THEN
-			''
+	    ''
         ELSE extras
     END AS extras,
     order_time
@@ -37,7 +37,7 @@ SELECT
   runner_id,
   CAST(
   	CASE WHEN pickup_time LIKE 'null' THEN NULL ELSE pickup_time END 
-      AS DATETIME) AS pickup_time,
+    AS DATETIME) AS pickup_time,
   CAST(
   	CASE WHEN distance LIKE 'null' THEN NULL
         WHEN distance LIKE '%km' THEN TRIM('km' FROM distance)

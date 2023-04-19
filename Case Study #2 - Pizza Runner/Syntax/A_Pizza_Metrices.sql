@@ -1,4 +1,7 @@
+-----------------------
 -- A. PIZZA METRICES -- 
+-----------------------
+
 
 -- 1. How many pizzas were ordered?
 SELECT 

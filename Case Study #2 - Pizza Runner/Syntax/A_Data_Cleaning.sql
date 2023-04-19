@@ -1,6 +1,6 @@
------------------------------------
---A. Data Cleaning: Pizza Metrics--
------------------------------------
+-------------------------------------
+-- A. DATA CLAENING: PIZZA METRICS --
+-------------------------------------
 
 -- Create a new temporary table: customer_orders_temp
 
@@ -28,6 +28,7 @@ FROM customer_orders;
 
 SELECT *
 FROM customer_orders_temp;
+
 
 -- Create a new temporary table: runner_orders_temp
 

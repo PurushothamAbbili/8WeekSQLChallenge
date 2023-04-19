@@ -5,7 +5,7 @@
 - [Business Task](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner#business-task)
 - [Entity Relationship Diagram](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner#entity-relationship-diagram)
 - [Case Study Questions](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner#case-study-questions)
-- [Solution on Github](https://github.com/PurushothamAbbili/8-Week-MySQL-Challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/Solution.md)
+- [Solution on Github](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/README.md#-my-solution)
 
 ***
 

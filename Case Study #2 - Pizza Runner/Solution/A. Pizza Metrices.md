@@ -2,28 +2,34 @@
 ## A. Pizza Metrics
 ### Data cleaning
   
-  * Create a temporary table ```#customer_orders_temp``` from ```customer_orders``` table:
+  * Create a temporary table ```customer_orders_temp``` from ```customer_orders``` table:
   	* Convert ```null``` values and ```'null'``` text values in ```exclusions``` and ```extras``` into blank ```''```.
   
-  ```SQL
-  SELECT 
+  ```MySQL
+CREATE TEMPORARY TABLE customer_orders_temp
+SELECT 
     order_id,
     customer_id,
     pizza_id,
-    CASE 
-    	WHEN exclusions IS NULL OR exclusions LIKE 'null' THEN ''
-      	ELSE exclusions 
-      	END AS exclusions,
-    CASE 
-    	WHEN extras IS NULL OR extras LIKE 'null' THEN ''
-      	ELSE extras 
-      	END AS extras,
+    CASE
+        WHEN
+            exclusions IS NULL OR exclusions LIKE 'null'
+        THEN
+            ''
+        ELSE exclusions
+    END AS exclusions,
+    CASE
+        WHEN 
+	    extras IS NULL OR extras LIKE 'null' 
+        THEN
+	    ''
+        ELSE extras
+    END AS extras,
     order_time
-  INTO #customer_orders_temp
-  FROM customer_orders;
+FROM customer_orders;
   
   SELECT *
-  FROM #customer_orders_temp;
+  FROM customer_orders_temp;
   ```
 | order_id | customer_id | pizza_id | exclusions | extras | order_time               |
 |----------|-------------|----------|------------|--------|--------------------------|
@@ -42,40 +48,39 @@
 | 10       | 104         | 1        |            |        | 2020-01-11 18:34:49.000  |
   
   
-  * Create a temporary table ```#runner_orders_temp``` from ```runner_orders``` table:
+  * Create a temporary table ```runner_orders_temp``` from ```runner_orders``` table:
   	* Convert ```'null'``` text values in ```pickup_time```, ```duration``` and ```cancellation``` into ```null``` values. 
 	* Cast ```pickup_time``` to DATETIME.
 	* Cast ```distance``` to FLOAT.
-	* Cast ```duration``` to INT.
+	* Cast ```duration``` to FLOAT.
   
-  ```SQL
-  SELECT 
-    order_id,
-    runner_id,
-    CAST(
-    	CASE WHEN pickup_time LIKE 'null' THEN NULL ELSE pickup_time END 
-	    AS DATETIME) AS pickup_time,
-    CAST(
-    	CASE WHEN distance LIKE 'null' THEN NULL
-	      WHEN distance LIKE '%km' THEN TRIM('km' FROM distance)
-	      ELSE distance END
-      AS FLOAT) AS distance,
-    CAST(
-    	CASE WHEN duration LIKE 'null' THEN NULL
-	      WHEN duration LIKE '%mins' THEN TRIM('mins' FROM duration)
-	      WHEN duration LIKE '%minute' THEN TRIM('minute' FROM duration)
-	      WHEN duration LIKE '%minutes' THEN TRIM('minutes' FROM duration)
-	      ELSE duration END
-      AS INT) AS duration,
-    CASE WHEN cancellation IN ('null', 'NaN', '') THEN NULL 
-        ELSE cancellation
-        END AS cancellation
-INTO #runner_orders_temp
+```MySQL
+CREATE TEMPORARY TABLE runner_orders_temp
+SELECT 
+  order_id,
+  runner_id,
+  CAST(
+  	CASE WHEN pickup_time LIKE 'null' THEN NULL ELSE pickup_time END 
+    AS DATETIME) AS pickup_time,
+  CAST(
+  	CASE WHEN distance LIKE 'null' THEN NULL
+        WHEN distance LIKE '%km' THEN TRIM('km' FROM distance)
+        ELSE distance END
+    AS FLOAT) AS distance,
+  CAST(
+  	CASE WHEN duration LIKE 'null' THEN NULL
+        WHEN duration LIKE '%mins' THEN TRIM('mins' FROM duration)
+        WHEN duration LIKE '%minute' THEN TRIM('minute' FROM duration)
+        WHEN duration LIKE '%minutes' THEN TRIM('minutes' FROM duration)
+        ELSE duration END
+    AS FLOAT) AS duration,
+  CASE WHEN cancellation IN ('null', 'NaN', '') THEN NULL 
+      ELSE cancellation
+      END AS cancellation
 FROM runner_orders;
-  
-SELECT *
-FROM #runner_orders_temp;
 
+SELECT *
+FROM runner_orders_temp;
 ```
 | order_id | runner_id | pickup_time             | distance | duration | cancellation             |
 |----------|-----------|-------------------------|----------|----------|--------------------------|
@@ -92,20 +97,24 @@ FROM #runner_orders_temp;
 --- 
 ### Q1. How many pizzas were ordered?
 ```SQL
-SELECT COUNT(order_id) AS pizza_count
-FROM #customer_orders_temp;
+SELECT 
+    COUNT(order_id) AS no_of_orders
+FROM
+    customer_orders_temp;
 ```
-| pizza_count  |
+| no_of_orders |
 |--------------|
 | 14           |
 
 ---
 ### Q2. How many pizzas were ordered?
 ```SQL
-SELECT COUNT(DISTINCT order_id) AS order_count
-FROM #customer_orders_temp;
+SELECT 
+    COUNT(DISTINCT order_id) AS unique_orders
+FROM
+    customer_orders_temp;
 ```
-| order_count  |
+| unique_orders|
 |--------------|
 | 10           |
 
@@ -113,49 +122,54 @@ FROM #customer_orders_temp;
 ### Q3. How many successful orders were delivered by each runner?
 ```SQL
 SELECT 
-  runner_id,
-  COUNT(order_id) AS successful_orders
-FROM #runner_orders_temp
-WHERE cancellation IS NULL
+    runner_id, COUNT(order_id) AS no_of_orders_delivered
+FROM
+    runner_orders_temp
+WHERE
+    cancellation IS NULL
 GROUP BY runner_id;
 ```
-| runner_id | successful_orders  |
-|-----------|--------------------|
-| 1         | 4                  |
-| 2         | 3                  |
+| runner_id | no_of_orders_delivered  |
+|-----------|-------------------------|
+| 1         | 4                       |
+| 2         | 3                       |
 
 ---
 ### Q4. How many successful orders were delivered by each runner?
-Approach 1: Use subquery.
+Metrhod 1: Using JOIN.
 ```SQL
 SELECT 
-  p.pizza_name,
-  COUNT(*) AS deliver_count
-FROM #customer_orders_temp c
-JOIN pizza_names p 
-  ON c.pizza_id = p.pizza_id
-WHERE c.order_id IN (
-    SELECT order_id 
-    FROM #runner_orders_temp
-    WHERE cancellation IS NULL)
+    p.pizza_name, COUNT(*) AS delivery_count
+FROM
+    pizza_names p
+        JOIN
+    customer_orders_temp c ON p.pizza_id = c.pizza_id
+        JOIN
+    runner_orders_temp r ON c.order_id = r.order_id
+WHERE
+    r.cancellation IS NULL
 GROUP BY p.pizza_name;
 ```
 
-Approach 2: Use JOIN.
+Method 2: Using Subquery.
 ```SQL
 SELECT 
-  p.pizza_name,
-  COUNT(*) AS deliver_count
-FROM #customer_orders_temp c
-JOIN pizza_names p 
-  ON c.pizza_id = p.pizza_id
-JOIN #runner_orders_temp r 
-  ON c.order_id = r.order_id
-WHERE r.cancellation IS NULL
+    p.pizza_name, COUNT(*) AS delivery_count
+FROM
+    customer_orders_temp c
+        JOIN
+    pizza_names p ON c.pizza_id = p.pizza_id
+WHERE
+    c.order_id IN (SELECT 
+            r.order_id
+        FROM
+            runner_orders_temp r
+        WHERE
+            r.cancellation IS NULL)
 GROUP BY p.pizza_name;
 ```
 
-| pizza_name | deliver_count  |
+| pizza_name | delivery_count |
 |------------|----------------|
 | Meatlovers | 9              |
 | Vegetarian | 3              |
@@ -164,10 +178,17 @@ GROUP BY p.pizza_name;
 ### Q5. How many Vegetarian and Meatlovers were ordered by each customer?
 ```SQL
 SELECT 
-  customer_id,
-  SUM(CASE WHEN pizza_id = 1 THEN 1 ELSE 0 END) AS Meatlovers,
-  SUM(CASE WHEN pizza_id = 2 THEN 1 ELSE 0 END) AS Vegetarian
-FROM #customer_orders_temp
+    customer_id,
+    SUM(CASE
+        WHEN pizza_id = 1 THEN 1
+        ELSE 0
+    END) AS `Meatlovers`,
+    SUM(CASE
+        WHEN pizza_id = 2 THEN 1
+        ELSE 0
+    END) AS Vegetarian
+FROM
+    customer_orders_temp
 GROUP BY customer_id;
 ```
 | customer_id | Meatlovers | Vegetarian  |
@@ -181,33 +202,41 @@ GROUP BY customer_id;
 ---
 ### Q6. What was the maximum number of pizzas delivered in a single order?
 ```SQL
-SELECT MAX(pizza_count) AS max_count
-FROM (
-  SELECT 
-    c.order_id,
-    COUNT(c.pizza_id) AS pizza_count
-  FROM #customer_orders_temp c
-  JOIN #runner_orders_temp r 
-    ON c.order_id = r.order_id
-  WHERE r.cancellation IS NULL
-  GROUP BY c.order_id
-) tmp;
+SELECT 
+    MAX(pizza_count) AS max_pizza_deliveries_per_order
+FROM
+    (SELECT 
+        c.order_id, COUNT(c.pizza_id) AS pizza_count
+    FROM
+        customer_orders_temp c
+    JOIN runner_orders_temp r ON c.order_id = r.order_id
+    WHERE
+        r.cancellation IS NULL
+    GROUP BY c.order_id) temp;
 ```
-| max_count  |
-|------------|
-| 3          |
+| max_pizza_deliveries_per_order  |
+|---------------------------------|
+|               3                 |
 
 ---
 ### Q7. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
 ```SQL
 SELECT 
-  c.customer_id,
-  SUM(CASE WHEN exclusions != '' OR extras != '' THEN 1 ELSE 0 END) AS has_change,
-  SUM(CASE WHEN exclusions = '' AND extras = '' THEN 1 ELSE 0 END) AS no_change
-FROM #customer_orders_temp c
-JOIN #runner_orders_temp r 
-  ON c.order_id = r.order_id
-WHERE r.cancellation IS NULL
+    c.customer_id,
+    SUM(CASE
+        WHEN exclusions != '' OR extras != '' THEN 1
+        ELSE 0
+    END) AS has_change,
+    SUM(CASE
+        WHEN exclusions = '' AND extras = '' THEN 1
+        ELSE 0
+    END) AS no_change
+FROM
+    customer_orders_temp c
+        JOIN
+    runner_orders_temp r ON c.order_id = r.order_id
+WHERE
+    r.cancellation IS NULL
 GROUP BY c.customer_id;
 ```
 | customer_id | has_change | no_change  |
@@ -222,13 +251,17 @@ GROUP BY c.customer_id;
 ### Q8. How many pizzas were delivered that had both exclusions and extras?
 ```SQL
 SELECT 
-  SUM(CASE WHEN exclusions != '' AND extras != '' THEN 1 ELSE 0 END) AS change_both
-FROM #customer_orders_temp c
-JOIN #runner_orders_temp r 
-  ON c.order_id = r.order_id
-WHERE r.cancellation IS NULL;
+    COUNT(c.pizza_id) AS total
+FROM
+    customer_orders_temp c
+        JOIN
+    runner_orders_temp r ON c.order_id = r.order_id
+WHERE
+    r.cancellation IS NULL
+        AND c.exclusions <> ''
+        AND c.extras <> '';
 ```
-| change_both  |
+| total        |
 |--------------|
 | 1            |
 
@@ -236,36 +269,39 @@ WHERE r.cancellation IS NULL;
 ### Q9. What was the total volume of pizzas ordered for each hour of the day?
 ```SQL
 SELECT 
-  DATEPART(HOUR, order_time) AS hour_of_day,
-  COUNT(order_id) AS pizza_volume
-FROM #customer_orders_temp
-GROUP BY DATEPART(HOUR, order_time)
-ORDER BY hour_of_day;
+    HOUR(order_time) AS hour_of_the_day,
+    COUNT(order_id) AS total_pizza_volume
+FROM
+    customer_orders_temp
+GROUP BY HOUR(order_time)
+ORDER BY hour_of_the_day;
 ```
-| hour_of_day | pizza_volume  |
-|-------------|---------------|
-| 11          | 1             |
-| 13          | 3             |
-| 18          | 3             |
-| 19          | 1             |
-| 21          | 3             |
-| 23          | 3             |
+| hour_of_the_day | total_pizza_volume  |
+|-----------------|---------------------|
+| 11              | 1                   |
+| 13              | 3                   |
+| 18              | 3                   |
+| 19              | 1                   |
+| 21              | 3                   |
+| 23              | 3                   |
 
 ---
 ### Q10. What was the volume of orders for each day of the week?
 ```SQL
 SELECT 
-  DATENAME(weekday, order_time) AS week_day,
-  COUNT(order_id) AS order_volume
-FROM #customer_orders_temp
-GROUP BY DATENAME(weekday, order_time);
+    DAYNAME(order_time) AS day_of_the_week,
+    COUNT(order_id) AS total_order_volume
+FROM
+    customer_orders_temp
+GROUP BY DAYNAME(order_time)
+ORDER BY day_of_the_week;
 ```
-| week_day  | order_volume  |
-|-----------|---------------|
-| Friday    | 1             |
-| Saturday  | 5             |
-| Thursday  | 3             |
-| Wednesday | 5             |
+| day_of_the_week  | total_order_volume |
+|------------------|--------------------|
+| Friday           | 1                  |
+| Saturday         | 5                  |
+| Thursday         | 3                  |
+| Wednesday        | 5                  |
 
 ---
-My solution for **[B. Runner and Customer Experience](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/Solution/B.%20Runner%20and%20Customer%20Experience.md)**.
+My solution for **[B. Runner and Customer Experience](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/Solution/B.%20Runner%20and%20Customer%20Experience.md)**.

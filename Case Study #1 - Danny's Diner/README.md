@@ -2,9 +2,9 @@
 <img src="https://user-images.githubusercontent.com/81607668/127727503-9d9e7a25-93cb-4f95-8bd0-20b87cb4b459.png" alt="Image" width="500" height="520">
 
 ## 📚 Table of Contents
-- [Business Task](#business-task)
-- [Entity Relationship Diagram](#entity-relationship-diagram)
-- [Case Study Questions](#case-study-questions)
+- [Business Task](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner#business-task)
+- [Entity Relationship Diagram](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner#entity-relationship-diagram)
+- [Case Study Questions](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner#case-study-questions)
 - [Solution on Github](https://github.com/PurushothamAbbili/8-Week-MySQL-Challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/Solution.md)
 
 ***
@@ -35,3 +35,8 @@ Danny wants to use the data to answer a few simple questions about his customers
 
 1. Join All The Things - Recreate the table with: customer_id, order_date, product_name, price, member (Y/N)
 2. Rank All The Things - Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
+
+---
+## 🚀 My Solution
+* View the complete syntax [HERE](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner/Syntax).
+* View the result and explanation [HERE](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner/Solution).

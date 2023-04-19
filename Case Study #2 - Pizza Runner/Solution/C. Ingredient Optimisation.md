@@ -1,20 +1,29 @@
 # 🍕 Case Study #2 - Pizza Runner
 ## C. Ingredient Optimisation
 ### Data cleaning
-**1. Create a new temporary table ```#toppingsBreak``` to separate ```toppings``` into multiple rows**
-```SQL
+**1. Create a new temporary table ```toppingsBreak``` to separate ```toppings``` into multiple rows**
+```MySQL
+CREATE TEMPORARY TABLE toppings_break AS
 SELECT 
   pr.pizza_id,
-  TRIM(value) AS topping_id,
+  TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(pr.toppings, ',', n.n), ',', -1)) AS topping_id,
   pt.topping_name
-INTO #toppingsBreak
 FROM pizza_recipes pr
-  CROSS APPLY STRING_SPLIT(toppings, ',') AS t
-JOIN pizza_toppings pt
-  ON TRIM(t.value) = pt.topping_id;
-  
-SELECT *
-FROM #toppingsBreak;
+  CROSS JOIN (
+    SELECT 1 AS n
+    UNION SELECT 2
+    UNION SELECT 3
+    UNION SELECT 4
+    UNION SELECT 5
+  ) AS n
+  JOIN pizza_toppings pt
+    ON TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(pr.toppings, ',', n.n), ',', -1)) = pt.topping_id
+WHERE TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(pr.toppings, ',', n.n), ',', -1)) != '';
+
+SELECT 
+    *
+FROM
+    toppings_break;
 ```
   
 | pizza_id | topping_id | topping_name  |
@@ -47,13 +56,16 @@ FROM #toppingsBreak;
 | 3        | 12         | Tomato Sauce  |
 
 
-**2. Add an identity column ```record_id``` to ```#customer_orders_temp``` to select each ordered pizza more easily**
-```SQL
-ALTER TABLE #customer_orders_temp
-ADD record_id INT IDENTITY(1,1);
+**2. Add an identity column ```record_id``` to ```customer_orders_temp``` to select each ordered pizza more easily**
+```MySQL
+ALTER TABLE customer_orders_temp
+ADD record_id INT AUTO_INCREMENT,
+ADD PRIMARY KEY (record_id);
 
-SELECT *
-FROM #customer_orders_temp;
+SELECT 
+    *
+FROM
+    customer_orders_temp;
 ```
   
 | order_id | customer_id | pizza_id | exclusions | extras | order_time              | record_id  |
@@ -75,16 +87,26 @@ FROM #customer_orders_temp;
   
 
 **3. Create a new temporary table ```extrasBreak``` to separate ```extras``` into multiple rows**
-```SQL
+```MySQL
+CREATE TEMPORARY TABLE extrasBreak AS
 SELECT 
   c.record_id,
-  TRIM(e.value) AS extra_id
-INTO #extrasBreak 
-FROM #customer_orders_temp c
-  CROSS APPLY STRING_SPLIT(extras, ',') AS e;
+  TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(c.extras, ',', n.n), ',', -1)) AS extra_id
+FROM customer_orders_temp c
+  JOIN (
+    SELECT 1 AS n
+    UNION SELECT 2
+    UNION SELECT 3
+    UNION SELECT 4
+    UNION SELECT 5
+  ) AS n
+  ON LENGTH(c.extras) - LENGTH(REPLACE(c.extras, ',', '')) >= n.n - 1
+WHERE c.extras IS NOT NULL AND TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(c.extras, ',', n.n), ',', -1)) != '';
 
-SELECT *
-FROM #extrasBreak;
+SELECT 
+    *
+FROM
+    extrasBreak;
 ```
   
 | record_id | extra_id  |
@@ -107,16 +129,26 @@ FROM #extrasBreak;
 | 14        | 4         |
 
 **4. Create a new temporary table ```exclusionsBreak``` to separate into ```exclusions``` into multiple rows**
-```SQL
+```MySQL
+CREATE TEMPORARY TABLE exclusionsBreak AS
 SELECT 
   c.record_id,
-  TRIM(e.value) AS exclusion_id
-INTO #exclusionsBreak 
-FROM #customer_orders_temp c
-  CROSS APPLY STRING_SPLIT(exclusions, ',') AS e;
-
-SELECT *
-FROM #exclusionsBreak;
+  TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(c.exclusions, ',', n.n), ',', -1)) AS exclusion_id
+FROM customer_orders_temp c
+  JOIN (
+    SELECT 1 AS n
+    UNION SELECT 2
+    UNION SELECT 3
+    UNION SELECT 4
+    UNION SELECT 5
+  ) AS n
+  ON LENGTH(c.exclusions) - LENGTH(REPLACE(c.exclusions, ',', '')) >= n.n - 1
+WHERE c.exclusions IS NOT NULL AND TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(c.exclusions, ',', n.n), ',', -1)) != '';
+ 
+SELECT 
+    *
+FROM
+    exclusionsBreak;
 ```
   
 | record_id | exclusion_id  |
@@ -139,13 +171,15 @@ FROM #exclusionsBreak;
 
 ---
 ### Q1. What are the standard ingredients for each pizza?
-```SQL
+```MySQL
 SELECT 
-  p.pizza_name,
-  STRING_AGG(t.topping_name, ', ') AS ingredients
-FROM #toppingsBreak t
-JOIN pizza_names p 
-  ON t.pizza_id = p.pizza_id
+    p.pizza_name,
+    GROUP_CONCAT(t.topping_name
+        SEPARATOR ', ') AS ingredients
+FROM
+    toppingsBreak t
+        JOIN
+    pizza_names p ON t.pizza_id = p.pizza_id
 GROUP BY p.pizza_name;
 ```
   
@@ -156,13 +190,13 @@ GROUP BY p.pizza_name;
 
 ---
 ### Q2. What was the most commonly added extra?
-```SQL
+```MySQL
 SELECT 
-  p.topping_name,
-  COUNT(*) AS extra_count
-FROM #extrasBreak e
-JOIN pizza_toppings p
-  ON e.extra_id = p.topping_id
+    p.topping_name, COUNT(*) AS extra_count
+FROM
+    extrasBreak e
+        JOIN
+    pizza_toppings p ON e.extra_id = p.topping_id
 GROUP BY p.topping_name
 ORDER BY COUNT(*) DESC;
 ```
@@ -177,13 +211,13 @@ The most commonly added extra was Bacon.
 
 ---
 ### Q3. What was the most common exclusion?
-```SQL
+```MySQL
 SELECT 
-  p.topping_name,
-  COUNT(*) AS exclusion_count
-FROM #exclusionsBreak e
-JOIN pizza_toppings p
-  ON e.exclusion_id = p.topping_id
+    p.topping_name, COUNT(*) AS exclusion_count
+FROM
+    exclusionsBreak e
+        JOIN
+    pizza_toppings p ON e.exclusion_id = p.topping_id
 GROUP BY p.topping_name
 ORDER BY COUNT(*) DESC;
 ```
@@ -204,16 +238,16 @@ The most common exclusion was Cheese.
 * ```Meat Lovers - Exclude Cheese, Bacon - Extra Mushroom, Peppers```
 
 To solve this question:
-* Create 3 CTEs: ```extras_cte```, ```exclusions_cte```, and ```union_cte``` combining two tables
-* Use the ```union_cte``` to LEFT JOIN with the ```customer_orders_temp``` and JOIN with the ```pizza_name```
-* Use the ```CONCAT_WS``` with ```STRING_AGG``` to get the result
+* Create 3 CTEs: ```cteExtras```, ```cteExclusions```, and ```cteUnion``` combining two tables
+* Use the ```cteUnion``` to LEFT JOIN with the ```customer_orders_temp``` and JOIN with the ```pizza_name```
+* Use the ```CONCAT_WS``` with ```GROUP_CONCAT``` to get the result
 
-```SQL
+```MySQL
 WITH cteExtras AS (
   SELECT 
     e.record_id,
-    'Extra ' + STRING_AGG(t.topping_name, ', ') AS record_options
-  FROM #extrasBreak e
+    CONCAT('Extra ', GROUP_CONCAT(t.topping_name SEPARATOR ', ')) AS record_options
+  FROM extrasBreak e
   JOIN pizza_toppings t
     ON e.extra_id = t.topping_id
   GROUP BY e.record_id
@@ -221,15 +255,15 @@ WITH cteExtras AS (
 cteExclusions AS (
   SELECT 
     e.record_id,
-    'Exclusion ' + STRING_AGG(t.topping_name, ', ') AS record_options
-  FROM #exclusionsBreak e
+    CONCAT('Exclusion ', GROUP_CONCAT(t.topping_name SEPARATOR ', ')) AS record_options
+  FROM exclusionsBreak e
   JOIN pizza_toppings t
     ON e.exclusion_id = t.topping_id
   GROUP BY e.record_id
 ), 
 cteUnion AS (
   SELECT * FROM cteExtras
-  UNION
+  UNION ALL
   SELECT * FROM cteExclusions
 )
 
@@ -239,8 +273,8 @@ SELECT
   c.customer_id,
   c.pizza_id,
   c.order_time,
-  CONCAT_WS(' - ', p.pizza_name, STRING_AGG(u.record_options, ' - ')) AS pizza_info
-FROM #customer_orders_temp c
+  CONCAT_WS(' - ', p.pizza_name, GROUP_CONCAT(u.record_options SEPARATOR ' - ')) AS pizza_info
+FROM customer_orders_temp c
 LEFT JOIN cteUnion u
   ON c.record_id = u.record_id
 JOIN pizza_names p
@@ -255,7 +289,7 @@ GROUP BY
 ORDER BY record_id;
 ```
 
-**Table ```cteExtra```**
+**Table ```cteExtras```**
 | record_id | record_options        |
 |-----------|-----------------------|
 | 8         | Extra Bacon           |
@@ -263,7 +297,7 @@ ORDER BY record_id;
 | 12        | Extra Bacon, Chicken  |
 | 14        | Extra Bacon, Cheese   |
 
-**Table ```cteExclusion```**
+**Table ```cteExclusions```**
 | record_id | record_options                 |
 |-----------|--------------------------------|
 | 5         | Exclusion Cheese               |
@@ -310,33 +344,33 @@ ORDER BY record_id;
 
 To solve this question:
 * Create a CTE in which each line displays an ingredient for an ordered pizza (add '2x' for extras and remove exclusions as well)
-* Use ```CONCAT``` and ```STRING_AGG``` to get the result
+* Use ```CONCAT``` and ```GROUP_CONCAT``` to get the result
 
-```SQL
+```MySQL
 WITH ingredients AS (
   SELECT 
     c.*,
     p.pizza_name,
 
-    -- Add '2x' in front of topping_names if their topping_id appear in the #extrasBreak table
+    -- Add a 2x in front of topping_names if their topping_id appear in the extrasBreak table
     CASE WHEN t.topping_id IN (
           SELECT extra_id 
-          FROM #extrasBreak e 
+          FROM extrasBreak e 
           WHERE e.record_id = c.record_id)
-      THEN '2x' + t.topping_name
+      THEN CONCAT('2x', t.topping_name)
       ELSE t.topping_name
     END AS topping
 
-  FROM #customer_orders_temp c
-  JOIN #toppingsBreak t
+  FROM customer_orders_temp c
+  JOIN toppingsBreak t
     ON t.pizza_id = c.pizza_id
   JOIN pizza_names p
     ON p.pizza_id = c.pizza_id
 
-  -- Exclude toppings if their topping_id appear in the #exclusionBreak table
+  -- Exclude toppings if their topping_id appear in the exclusionBreak table
   WHERE t.topping_id NOT IN (
       SELECT exclusion_id 
-      FROM #exclusionsBreak e 
+      FROM exclusionsBreak e 
       WHERE c.record_id = e.record_id)
 )
 
@@ -346,7 +380,7 @@ SELECT
   customer_id,
   pizza_id,
   order_time,
-  CONCAT(pizza_name + ': ', STRING_AGG(topping, ', ')) AS ingredients_list
+  CONCAT(pizza_name, ': ', GROUP_CONCAT(topping SEPARATOR ', ')) AS ingredients_list
 FROM ingredients
 GROUP BY 
   record_id, 
@@ -383,7 +417,7 @@ To solve this question:
   * if extra ingredient, add 2 
   * if excluded ingredient, add 0
   * no extras or no exclusions, add 1
-```SQL
+```MySQL
 WITH frequentIngredients AS (
   SELECT 
     c.record_id,
@@ -391,21 +425,21 @@ WITH frequentIngredients AS (
     CASE
       -- if extra ingredient, add 2
       WHEN t.topping_id IN (
-          SELECT extra_id 
-          FROM #extrasBreak e
+          SELECT e.extra_id 
+          FROM extrasBreak e
           WHERE e.record_id = c.record_id) 
       THEN 2
       -- if excluded ingredient, add 0
       WHEN t.topping_id IN (
-          SELECT exclusion_id 
-          FROM #exclusionsBreak e 
+          SELECT e.exclusion_id 
+          FROM exclusionsBreak e 
           WHERE c.record_id = e.record_id)
       THEN 0
       -- no extras, no exclusions, add 1
       ELSE 1
     END AS times_used
-  FROM #customer_orders_temp c
-  JOIN #toppingsBreak t
+  FROM customer_orders_temp c
+  JOIN toppingsBreak t
     ON t.pizza_id = c.pizza_id
   JOIN pizza_names p
     ON p.pizza_id = c.pizza_id
@@ -435,4 +469,4 @@ ORDER BY times_used DESC;
 | Tomatoes     | 4           |
   
 ---
-My solution for **[D. Pricing and Ratings](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/Solution/D.%20Pricing%20and%20Ratings.md)**.
+My solution for **[D. Pricing and Ratings](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/Solution/D.%20Pricing%20and%20Ratings.md)**.

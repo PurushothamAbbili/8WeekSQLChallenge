@@ -1,14 +1,15 @@
 # 🍕 Case Study #2 - Pizza Runner
 ## B. Runner and Customer Experience
 ### Q1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
-```TSQL
+```MySQL
 SELECT 
-  DATEPART(week, registration_date) AS week_period,
-  COUNT(*) AS runner_count
-FROM runners
-GROUP BY DATEPART(week, registration_date);
+    WEEK(registration_date) AS week,
+    COUNT(runner_id) AS no_of_signups
+FROM
+    runners
+GROUP BY WEEK(registration_date);
 ```
-| week_period | runner_count  |
+| week        | no_of_signups |
 |-------------|---------------|
 | 1           | 1             |
 | 2           | 2             |
@@ -16,16 +17,16 @@ GROUP BY DATEPART(week, registration_date);
 
 ---
 ### Q2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
-```TSQL
+```MySQL
 WITH runners_pickup AS (
   SELECT
     r.runner_id,
     c.order_id, 
     c.order_time, 
     r.pickup_time, 
-    DATEDIFF(MINUTE, c.order_time, r.pickup_time) AS pickup_minutes
-  FROM #customer_orders_temp AS c
-  JOIN #runner_orders_temp AS r
+    TIMESTAMPDIFF(MINUTE, c.order_time, r.pickup_time) AS pickup_minutes
+  FROM customer_orders_temp c
+  JOIN runner_orders_temp r
     ON c.order_id = r.order_id
   WHERE r.cancellation IS NULL
   GROUP BY r.runner_id, c.order_id, c.order_time, r.pickup_time
@@ -33,38 +34,38 @@ WITH runners_pickup AS (
 
 SELECT 
   runner_id,
-  AVG(pickup_minutes) AS average_time
+  CEIL(AVG(pickup_minutes)) AS average_time_in_minutes
 FROM runners_pickup
 GROUP BY runner_id;
 ```
-| runner_id | average_time  |
-|-----------|---------------|
-| 1         | 14            |
-| 2         | 20            |
-| 3         | 10            |
+| runner_id | average_time_in_minutes |
+|-----------|-------------------------|
+| 1         | 14                      |
+| 2         | 20                      |
+| 3         | 10                      |
 
 ---
 ### Q3. Is there any relationship between the number of pizzas and how long the order takes to prepare?
-```TSQL
-WITH pizzaPrepration AS (
+```MySQL
+WITH pizza_prepration AS (
   SELECT
     c.order_id, 
     c.order_time, 
     r.pickup_time,
-    DATEDIFF(MINUTE, c.order_time, r.pickup_time) AS prep_time,
+    TIMESTAMPDIFF(MINUTE, c.order_time, r.pickup_time) AS prep_time,
     COUNT(c.pizza_id) AS pizza_count
-  FROM #customer_orders_temp AS c
-  JOIN #runner_orders_temp AS r
+  FROM customer_orders_temp c
+  JOIN runner_orders_temp r
     ON c.order_id = r.order_id
   WHERE r.cancellation IS NULL
   GROUP BY c.order_id, c.order_time, r.pickup_time, 
-           DATEDIFF(MINUTE, c.order_time, r.pickup_time)
+           TIMESTAMPDIFF(MINUTE, c.order_time, r.pickup_time)
 )
 
 SELECT 
   pizza_count,
   AVG(prep_time) AS avg_prep_time
-FROM pizzaPrepration
+FROM pizza_prepration
 GROUP BY pizza_count;
 ```
 | pizza_count | avg_prep_time  |
@@ -79,13 +80,15 @@ GROUP BY pizza_count;
 
 ---
 ### Q4. What was the average distance travelled for each customer?
-```TSQL
-SELECT
-  c.customer_id,
-  ROUND(AVG(r.distance), 1) AS average_distance
-FROM #customer_orders_temp AS c
-JOIN #runner_orders_temp AS r
-  ON c.order_id = r.order_id
+```MySQL
+SELECT 
+    c.customer_id, ROUND(AVG(r.distance), 1) AS average_distance
+FROM
+    runner_orders_temp r
+        JOIN
+    customer_orders_temp c ON r.order_id = c.order_id
+WHERE
+    r.cancellation IS NULL
 GROUP BY c.customer_id;
 ```
 | customer_id | average_distance  |
@@ -98,31 +101,36 @@ GROUP BY c.customer_id;
 
 ---
 ### Q5. What was the difference between the longest and shortest delivery times for all orders?
-```TSQL
-SELECT MAX(duration) - MIN(duration) AS time_difference
-FROM #runner_orders_temp;
+```MySQL
+SELECT 
+    MAX(duration) - MIN(duration) AS difference
+FROM
+    runner_orders_temp;
 ```
-| time_difference|
-|----------------|
-| 30             |
+| difference|
+|-----------|
+| 30        |
 
 ---
 ### Q6. What was the average speed for each runner for each delivery and do you notice any trend for these values?
-```TSQL
+```MySQL
 SELECT 
-  r.runner_id,
-  c.order_id,
-  r.distance,
-  r.duration AS duration_min,
-  COUNT(c.order_id) AS pizza_count, 
-  ROUND(AVG(r.distance/r.duration*60), 1) AS avg_speed
-FROM #runner_orders_temp r
-JOIN #customer_orders_temp c
-  ON r.order_id = c.order_id
-WHERE r.cancellation IS NULL
-GROUP BY r.runner_id, c.order_id, r.distance, r.duration;
+    r.runner_id,
+    c.order_id,
+    r.distance,
+    r.duration,
+    COUNT(c.order_id) AS pizza_count,
+    ROUND(60 * AVG(r.distance / r.duration), 1) AS avg_speed
+FROM
+    runner_orders_temp r
+        JOIN
+    customer_orders_temp c ON r.order_id = c.order_id
+WHERE
+    cancellation IS NULL
+GROUP BY r.runner_id , c.order_id , r.distance , r.duration
+ORDER BY r.runner_id;
 ```
-| runner_id | order_id | distance | duration_min | pizza_count | avg_speed  |
+| runner_id | order_id | distance | duration     | pizza_count | avg_speed  |
 |-----------|----------|----------|--------------|-------------|------------|
 | 1         | 1        | 20       | 32           | 1           | 37.5       |
 | 1         | 2        | 20       | 27           | 1           | 44.4       |
@@ -139,21 +147,22 @@ GROUP BY r.runner_id, c.order_id, r.distance, r.duration;
 
 ---
 ### Q7. What is the successful delivery percentage for each runner?
-```TSQL
-
+```MySQL
 SELECT 
-  runner_id,
-  COUNT(distance) AS delivered,
-  COUNT(order_id) AS total,
-  100 * COUNT(distance) / COUNT(order_id) AS successful_pct
-FROM #runner_orders_temp
+    runner_id,
+    COUNT(distance) AS delivered,
+    COUNT(order_id) AS total,
+    ROUND(100 * COUNT(distance) / COUNT(order_id),
+            2) AS successful_delivery_percentage
+FROM
+    runner_orders_temp
 GROUP BY runner_id;
 ```
-| runner_id | delivered | total | successful_pct  |
-|-----------|-----------|-------|-----------------|
-| 1         | 4         | 4     | 100             |
-| 2         | 3         | 4     | 75              |
-| 3         | 1         | 2     | 50              |
+| runner_id | delivered | total | successful_delivery_percentage  |
+|-----------|-----------|-------|---------------------------------|
+| 1         | 4         | 4     | 100                             |
+| 2         | 3         | 4     | 75                              |
+| 3         | 1         | 2     | 50                              |
 
 ---
-My solution for **[C. Ingredient Optimisation](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/Solution/C.%20Ingredient%20Optimisation.md).**
+My solution for **[C. Ingredient Optimisation](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/Solution/C.%20Ingredient%20Optimisation.md).**

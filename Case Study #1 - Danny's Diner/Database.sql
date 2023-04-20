@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS dannys_diner;
 USE dannys_diner;
 
-CREATE TABLE sales (
+CREATE TABLE IF NOT EXISTS sales (
     customer_id VARCHAR(1),
     order_date DATE,
     product_id INT
@@ -27,7 +27,7 @@ VALUES
   ('C', '2021-01-07', 3);
  
 
-CREATE TABLE menu (
+CREATE TABLE IF NOT EXISTS menu (
     product_id INT,
     product_name VARCHAR(5),
     price INT
@@ -41,7 +41,7 @@ VALUES
   (3, 'ramen', 12);
   
 
-CREATE TABLE members (
+CREATE TABLE IF NOT EXISTS members (
     customer_id VARCHAR(1),
     join_date DATE
 );

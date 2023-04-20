@@ -1,6 +1,7 @@
 # 🐟 Case Study #6 - Clique Bait
 
-<img src="https://user-images.githubusercontent.com/81607668/134615258-d1108e0d-0816-4cd7-a972-d45580f82352.png" alt="Image" width="500" height="520">
+<p align="center">
+<img src="https://8weeksqlchallenge.com/images/case-study-designs/6.png" alt="Image" width="500" height="520">
 
 ## 📕 Table of Contents
 * [Bussiness Task](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%236%20-%20Clique%20Bait#%EF%B8%8F-bussiness-task)
@@ -19,7 +20,7 @@ In this case study - you are required to support Danny’s vision and analyse hi
 ---
 ## 🔐 Entity Relationship Diagram
 <p align="center">
-<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/e6.PNG" align="center ="800" height="400"">
+<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/e6.PNG">
 
 ---
 ## ❓ Case Study Questions

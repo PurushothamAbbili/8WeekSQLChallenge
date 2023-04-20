@@ -1,5 +1,5 @@
 --------------------------------
--- B. Data Analysis Questions --
+-- B. DATA ANALYSIS QUESTIONS --
 --------------------------------
 
 -- 1. How many customers has Foodie-Fi ever had?

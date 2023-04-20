@@ -1,12 +1,13 @@
 # 📊 Case Study #4 - Data Bank
 
-<img src="https://user-images.githubusercontent.com/81607668/130343294-a8dcceb7-b6c3-4006-8ad2-fab2f6905258.png" alt="Image" width="500" height="520">
+<p align="center">
+<img src="https://8weeksqlchallenge.com/images/case-study-designs/4.png" alt="Image" width="500" height="520">
 
 ## 📕 Table of Contents
-* [Bussiness Task](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank#%EF%B8%8F-bussiness-task)
-* [Entity Relationship Diagram](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank#-entity-relationship-diagram)
-* [Case Study Questions](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank#-case-study-questions)
-* [My Solution](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank#-my-solution)
+* [Bussiness Task](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank#%EF%B8%8F-bussiness-task)
+* [Entity Relationship Diagram](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank#-entity-relationship-diagram)
+* [Case Study Questions](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank#-case-study-questions)
+* [My Solution](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank#-my-solution)
 
 ---
 ## 🛠️ Bussiness Task
@@ -19,7 +20,7 @@ This case study is all about calculating metrics, growth and helping the busines
 ---
 ## 🔐 Entity Relationship Diagram
 <p align="center">
-<img src="https://raw.githubusercontent.com/qanhnn12/8-Week-SQL-Challenge/main/IMG/e4.png" align="center">
+<img src="https://8weeksqlchallenge.com/images/case-study-4-erd.png" align="center">
 
 ---
 ## ❓ Case Study Questions

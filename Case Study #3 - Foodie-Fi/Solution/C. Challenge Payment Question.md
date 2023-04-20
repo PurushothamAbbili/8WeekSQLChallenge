@@ -35,7 +35,6 @@ Example outputs for this table might look like the following:
     * use ```CASE``` to create a new column ```last_date```: last day of the current plan
     * if a customer kept using the current plan, last_date = '2020-12-31'
     * if a customer changed the plan, last_date = (month difference between start_date and changing date) + start_date
-  * Create a new table ```payments``` by selecting the required columns
 
 ```MySQL
 WITH RECURSIVE dateRecursion AS (

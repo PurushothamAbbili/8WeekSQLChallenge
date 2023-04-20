@@ -1,5 +1,5 @@
 -----------------------------------
--- C. Challenge Payment Question --
+-- C. CHALLENGE PAYMENT QUESTION --
 -----------------------------------
 
 WITH RECURSIVE dateRecursion AS (

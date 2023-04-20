@@ -20,7 +20,7 @@ Danny and his friends launched a new startup called "Food-Fi" in 2020 and starte
 ---
 ## 🔐 Entity Relationship Diagram
 <p align="center">
-<img src="https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/IMG/e3.PNG" align="center" width="550" height="220" >
+<img src="https://8weeksqlchallenge.com/images/case-study-3-erd.png" align="center" width="550" height="220" >
 
 ---
 ## ❓ Case Study Questions

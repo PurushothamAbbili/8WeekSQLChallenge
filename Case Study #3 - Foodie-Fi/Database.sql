@@ -1,12 +1,13 @@
-CREATE DATABASE foodie_fi;
+CREATE SCHEMA IF NOT EXISTS foodie_fi;
+USE foodie_fi;
 
-CREATE TABLE foodie_fi.dbo.plans (
+CREATE TABLE IF NOT EXISTS plans (
   plan_id INTEGER,
   plan_name VARCHAR(13),
   price DECIMAL(5,2)
 );
 
-INSERT INTO foodie_fi.dbo.plans
+INSERT INTO plans
   (plan_id, plan_name, price)
 VALUES
   ('0', 'trial', '0'),
@@ -15,13 +16,14 @@ VALUES
   ('3', 'pro annual', '199'),
   ('4', 'churn', null);
 
-CREATE TABLE foodie_fi.dbo.subscriptions (
-  customer_id INT,
+
+CREATE TABLE IF NOT EXISTS subscriptions (
+  customer_id INTEGER,
   plan_id INTEGER,
   start_date DATE
 );
 
-INSERT INTO foodie_fi.dbo.subscriptions
+INSERT INTO subscriptions
   (customer_id, plan_id, start_date)
 VALUES
   ('1', '0', '2020-08-01'),
@@ -1018,11 +1020,7 @@ VALUES
   ('372', '3', '2020-08-08'),
   ('373', '0', '2020-10-20'),
   ('373', '1', '2020-10-27'),
-  ('373', '2', '2020-11-03');
-
-INSERT INTO foodie_fi.dbo.subscriptions
-  (customer_id, plan_id, start_date)
-VALUES
+  ('373', '2', '2020-11-03'),
   ('374', '0', '2020-05-18'),
   ('374', '1', '2020-05-25'),
   ('374', '2', '2020-06-15'),
@@ -2021,11 +2019,7 @@ VALUES
   ('754', '4', '2020-05-09'),
   ('755', '0', '2020-05-09'),
   ('755', '1', '2020-05-16'),
-  ('755', '3', '2020-10-22');
- 
-INSERT INTO foodie_fi.dbo.subscriptions
-  (customer_id, plan_id, start_date)
-VALUES
+  ('755', '3', '2020-10-22'),
   ('756', '0', '2020-02-19'),
   ('756', '4', '2020-02-26'),
   ('757', '0', '2020-11-05'),

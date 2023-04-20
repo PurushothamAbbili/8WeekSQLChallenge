@@ -305,4 +305,4 @@ WHERE
 There were no customers downgrading from a pro monthly to a basic monthly plan in 2020.
 
 ---
-My solution for **[C. Challenge Payment Question](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution/C.%20Challenge%20Payment%20Question.md)**.
+My solution for **[C. Challenge Payment Question](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution/C.%20Challenge%20Payment%20Question.md)**.

@@ -31,7 +31,7 @@ Example outputs for this table might look like the following:
 | 18          | 2       | pro monthly   | 2020-10-13   | 19.90  | 4              |
 
 ---
-  * Use a RECURSIVE CTE to increment rows for all monthly paid plans in 2020 until customers changing their plans, except 'pro annual'.
+  * Use a ```RECURSIVE CTE``` to increment rows for all monthly paid plans in 2020 until customers changing their plans, except 'pro annual'.
     * use ```CASE``` to create a new column ```last_date```: last day of the current plan
     * if a customer kept using the current plan, last_date = '2020-12-31'
     * if a customer changed the plan, last_date = (month difference between start_date and changing date) + start_date

@@ -4,10 +4,10 @@
 
   
 ## 📕 Table of Contents
-* [Bussiness Task](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi#%EF%B8%8F-bussiness-task)
-* [Entity Relationship Diagram](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi#-entity-relationship-diagram)
-* [Case Study Questions](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi#-case-study-questions)
-* [My Solution](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi#-my-solution)
+* [Bussiness Task](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/README.md#%EF%B8%8F-bussiness-task)
+* [Entity Relationship Diagram](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/README.md#-entity-relationship-diagram)
+* [Case Study Questions](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/README.md#-case-study-questions)
+* [My Solution](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/README.md#-my-solution)
 
 ---
 ## 🛠️ Bussiness Task
@@ -25,12 +25,12 @@ Danny and his friends launched a new startup called "Food-Fi" in 2020 and starte
 ---
 ## ❓ Case Study Questions
 ### A. Customer Journey
-View my solution [HERE](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution/A.%20Customer%20Journey.md).
+View my solution [HERE](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution/A.%20Customer%20Journey.md).
 * Based off the 8 sample customers provided in the sample from the subscriptions table, write a brief description about each customer’s onboarding journey.
 
 ---
 ### B. Data Analysis Questions
-View my solution [HERE](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution/B.%20Data%20Analysis%20Questions.md).
+View my solution [HERE](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution/B.%20Data%20Analysis%20Questions.md).
 
 1. How many customers has Foodie-Fi ever had?
 2. What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value
@@ -46,7 +46,7 @@ View my solution [HERE](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/ma
 
 ---
 ### C. Challenge Payment Question
-View my solution [HERE](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution/C.%20Challenge%20Payment%20Question.md).
+View my solution [HERE](https://github.com/PurushothamAbbili/8WeekSQLChallenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution/C.%20Challenge%20Payment%20Question.md).
 
 The Foodie-Fi team wants to create a new payments table for the year 2020 that includes amounts paid by each customer in the subscriptions table with the following requirements:
   * monthly payments always occur on the same day of month as the original start_date of any monthly paid plan
@@ -55,16 +55,6 @@ The Foodie-Fi team wants to create a new payments table for the year 2020 that i
   * once a customer churns they will no longer make payments
 
 ---
-### D. Outside The Box Questions 
-View my solution [HERE](https://github.com/qanhnn12/8-Week-SQL-Challenge/blob/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution/D.%20Outside%20The%20Box%20Questions.md).
-
-1. How would you calculate the rate of growth for Foodie-Fi?
-2. What key metrics would you recommend Foodie-Fi management to track over time to assess performance of their overall business?
-3. What are some key customer journeys or experiences that you would analyse further to improve customer retention?
-4. If the Foodie-Fi team were to create an exit survey shown to customers who wish to cancel their subscription, what questions would you include in the survey?
-5. What business levers could the Foodie-Fi team use to reduce the customer churn rate? How would you validate the effectiveness of your ideas?
-
----
 ## 🚀 My Solution
-* View the complete syntax [HERE](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi/Syntax).
-* View the result and explanation [HERE](https://github.com/qanhnn12/8-Week-SQL-Challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution).
+* View the complete syntax [HERE](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi/Syntax).
+* View the result and explanation [HERE](https://github.com/PurushothamAbbili/8WeekSQLChallenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi/Solution).

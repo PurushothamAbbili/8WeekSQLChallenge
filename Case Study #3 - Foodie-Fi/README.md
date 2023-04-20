@@ -1,6 +1,6 @@
 # 🥑 Case Study #3 - Foodie-Fi
-
-<img src="https://user-images.githubusercontent.com/81607668/129742132-8e13c136-adf2-49c4-9866-dec6be0d30f0.png" width="500" height="520" alt="image">
+<p align="center">
+<img src="https://8weeksqlchallenge.com/images/case-study-designs/3.png" width="500" height="520" alt="image">
 
   
 ## 📕 Table of Contents
@@ -20,7 +20,7 @@ Danny and his friends launched a new startup called "Food-Fi" in 2020 and starte
 ---
 ## 🔐 Entity Relationship Diagram
 <p align="center">
-<img src="https://8weeksqlchallenge.com/images/case-study-3-erd.png" align="center" width="550" height="220" >
+<img src="https://8weeksqlchallenge.com/images/case-study-3-erd.png">
 
 ---
 ## ❓ Case Study Questions
